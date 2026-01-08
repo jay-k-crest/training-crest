@@ -31,3 +31,5 @@ while guess != number_to_guess:
     guess = int(input("Guess again: "))
 
 print(f"CORRECT! You got it in {len(guesses)+1} guesses 🎉")
+
+[50,60,70]
