@@ -1,0 +1,2 @@
+this is before content 
+Another log entry has been added.
