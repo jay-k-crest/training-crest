@@ -92,3 +92,84 @@ SELECT r.rolname FROM pg_namespace n JOIN pg_roles r ON r.oid=n.nspowner WHERE n
 --duplicate a schema along with data
 
 create database test_schema
+
+
+--table called song
+
+create table test_schema.public.songs(
+    song_id serial primary key,
+    song_name varchar(50) not null
+)
+
+--add some sample data
+ 
+insert into test_schema.public.songs (song_name) values 
+('sexy back'),
+('tous les memes')
+
+--duplicate schema public with all data'
+
+pg_dump -d test_schema -h localhost -U postgres -n public >dump.sql 
+
+---rename original schema to public to old schema
+
+alter schema public rename to old_public
+
+--import back the dump'ed file
+
+psql -h localhost -U postfres -d test_schema -f dump.sql
+
+--pg_catalog
+
+select * from information_schema.schemata
+
+--compare tables and columns in two schemas
+
+SELECT coalesce(c1.table_name,c2.table_name) as table_name,
+coalesce(c1.column_name,c2.column_name) as column_name,
+c1.column_name as schema1,
+c2.column_name as schema2
+
+from(
+    select table_name,column_name
+    from information_schema.columns c
+    where c.table_schema = 'public'
+) c1
+full join
+(
+     select table_name,column_name
+    from information_schema.columns c
+    where c.table_schema = 'humanresources'
+) c2
+on c1.table_name = c2.table_name and c1.column_name = c2.column_name
+where c1.table_name is null or c2.table_name is null
+order by 1,2
+
+--schemas and privileges
+
+--- Schema Acessess level rights 
+---   - USAGE   only can see data
+---   - CREATE  even modify data
+
+CREATE SCHEMA programming;
+
+CREATE TABLE programming.employee (
+    emp_id UUID PRIMARY KEY,
+    name   VARCHAR(100)
+);
+
+
+
+GRANT USAGE ON SCHEMA programming TO "jay";
+
+--- grant select 
+
+GRANT SELECT ON ALL TABLES IN SCHEMA programming TO "jay";
+
+INSERT INTO programming.employee (emp_id,name) VALUES ('7fa7c25e-dfad-4b94-b257-7c8bb81c9f9e','ABC')
+
+SELECT * FROM programming.employee
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO "jay";
+
+GRANT CREATE ON SCHEMA programming TO "jay";
