@@ -1,0 +1,292 @@
+API FOR COLLEGE MANAGEMENT SYSTEM (CMS)
+======================================
+
+API Overview
+=============
+STEP 1: Create a New API
+Title       : OpenAPI Specification
+Description : API specification document of the College Management System (CMS)
+Contact     : Kalsariya Jay (https://jay-kalsariya.vercel.app)
+Version     : 1.0
+
+STEP 2: Identify the Type of API
+API Type    : Public
+
+STEP 3: Identify the Server Base URL
+Server Base URL : http://localhost:5000/api
+
+Request and Response Format
+---------------------------
+application/json
+
+
+=====================================================================
+STUDENTS RESOURCE DESIGN
+=====================================================================
+
+STEP 4: Identify the Resources
+Resource Identified : Student
+
+STEP 5: Have the Resources in Plural
+Resource Name : students
+
+STEP 6: Define the Resource Models
+Student Model :
+{
+    "Student Id",
+    "First Name",
+    "Last Name",
+    "Phone Number",
+    "Address"
+}
+
+STEP 7: Select the Identifier for Each Resource
+Resource Identifier : studentId
+
+
+=====================================================================
+ASSOCIATIONS BETWEEN RESOURCES
+=====================================================================
+
+STEP 8: Identify the Association for Each Resource
+Association :
+- One Course can have many Students
+- One Student can enroll in many Courses
+
+STEP 9: Check for the URL Complexity
+Association URL :
+v1/courses/{courseId}/students
+(Simple, readable, and REST-compliant)
+
+
+=====================================================================
+API OPERATIONS FOR STUDENTS
+=====================================================================
+
+STEP 10: Identify the Operations for Each Resource
+Operations Supported :
+- GET
+- POST
+- PUT
+- DELETE
+
+
+-------------------------------------------------
+GET v1/students
+-------------------------------------------------
+STEP 11: Identify the Parameters Required for the Operation
+Query Parameters :
+- firstName (filtering)
+- lastName (filtering)
+- page (pagination)
+- size (pagination)
+- sortBy (sorting)
+
+STEP 12: Identify the Content-Type of the Request
+Content-Type : application/json
+
+STEP 13: Identify the Request Body
+Request Body : None
+
+STEP 14: Identify the HTTP Status Codes for the Operation
+HTTP 200 OK
+HTTP 400 Bad Request
+
+STEP 15: Identify the Content-Type of Response
+Content-Type : application/json
+
+STEP 16: Identify the Response Body
+Response Body :
+(array)
+{
+    "Student Id"    : 12,
+    "First Name"    : "Jay",
+    "Last Name"     : "Kalsariya",
+    "Phone Number"  : "1234567890",
+    "Address"       : "Ahmedabad"
+}
+
+STEP 17: Handle Errors for the Operation
+Error Response :
+{
+    "code"    : "INVALID_REQUEST",
+    "message" : "Request data is invalid"
+}
+
+
+-------------------------------------------------
+POST v1/students
+-------------------------------------------------
+STEP 11: Identify the Parameters Required for the Operation
+Parameters : None
+
+STEP 12: Identify the Content-Type of the Request
+Content-Type : application/json
+
+STEP 13: Identify the Request Body
+{
+    "First Name",
+    "Last Name",
+    "Phone Number",
+    "Address"
+}
+
+STEP 14: Identify the HTTP Status Codes for the Operation
+HTTP 201 Created
+HTTP 400 Bad Request
+
+STEP 15: Identify the Content-Type of Response
+Content-Type : application/json
+
+STEP 16: Identify the Response Body
+{
+    "Student Id"    : 12,
+    "First Name"    : "Jay",
+    "Last Name"     : "Kalsariya",
+    "Phone Number"  : "1234567890",
+    "Address"       : "Ahmedabad"
+}
+
+STEP 17: Handle Errors for the Operation
+{
+    "code"    : "INVALID_REQUEST",
+    "message" : "Request data is invalid"
+}
+
+
+-------------------------------------------------
+GET v1/students/{studentId}
+-------------------------------------------------
+STEP 11: Identify the Parameters Required for the Operation
+Path Parameter :
+- studentId
+
+STEP 12: Identify the Content-Type of the Request
+Content-Type : application/json
+
+STEP 13: Identify the Request Body
+Request Body : None
+
+STEP 14: Identify the HTTP Status Codes for the Operation
+HTTP 200 OK
+HTTP 400 Bad Request
+HTTP 404 Not Found
+
+STEP 15: Identify the Content-Type of Response
+Content-Type : application/json
+
+STEP 16: Identify the Response Body
+{
+    "Student Id"    : 12,
+    "First Name"    : "Jay",
+    "Last Name"     : "Kalsariya",
+    "Phone Number"  : "1234567890",
+    "Address"       : "Ahmedabad"
+}
+
+STEP 17: Handle Errors for the Operation
+{
+    "code"    : "NOT_FOUND",
+    "message" : "Requested resource not found"
+}
+
+
+-------------------------------------------------
+PUT v1/students/{studentId}
+-------------------------------------------------
+STEP 11: Identify the Parameters Required for the Operation
+Path Parameter :
+- studentId
+
+STEP 12: Identify the Content-Type of the Request
+Content-Type : application/json
+
+STEP 13: Identify the Request Body
+{
+    "First Name",
+    "Last Name",
+    "Phone Number",
+    "Address"
+}
+
+STEP 14: Identify the HTTP Status Codes for the Operation
+HTTP 200 OK
+HTTP 400 Bad Request
+HTTP 404 Not Found
+
+STEP 15: Identify the Content-Type of Response
+Content-Type : application/json
+
+STEP 16: Identify the Response Body
+{
+    "Student Id"    : 12,
+    "First Name"    : "Jay",
+    "Last Name"     : "Kalsariya",
+    "Phone Number"  : "1234567890",
+    "Address"       : "Ahmedabad"
+}
+
+STEP 17: Handle Errors for the Operation
+{
+    "code"    : "INVALID_REQUEST",
+    "message" : "Request data is invalid"
+}
+
+
+-------------------------------------------------
+DELETE v1/students/{studentId}
+-------------------------------------------------
+STEP 11: Identify the Parameters Required for the Operation
+Path Parameter :
+- studentId
+
+STEP 12: Identify the Content-Type of the Request
+Content-Type : application/json
+
+STEP 13: Identify the Request Body
+Request Body : None
+
+STEP 14: Identify the HTTP Status Codes for the Operation
+HTTP 204 No Content
+HTTP 400 Bad Request
+HTTP 404 Not Found
+
+STEP 15: Identify the Content-Type of Response
+Content-Type : application/json
+
+STEP 16: Identify the Response Body
+Response Body : None
+
+STEP 17: Handle Errors for the Operation
+{
+    "code"    : "NOT_FOUND",
+    "message" : "Requested resource not found"
+}
+
+
+=====================================================================
+FILTERING, PAGINATION, AND SORTING
+=====================================================================
+
+STEP 18: Identify the Need for Filtering
+Filtering supported using:
+- firstName
+- lastName
+
+STEP 19: Identify the Need for Pagination
+Pagination supported using:
+- page
+- size
+
+STEP 20: Identify the Need for Sorting
+Sorting supported using:
+- sortBy (e.g., firstName)
+
+
+=====================================================================
+API VERSIONING
+=====================================================================
+
+STEP 21: Identify the API Versioning Scheme and Set the API Version
+Versioning Scheme : URI Versioning
+API Version        : v1

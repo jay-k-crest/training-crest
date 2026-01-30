@@ -1,0 +1,464 @@
+STEP 1 : create a new api
+
+    Title : OpenAPI specification 
+    Description : API specification document of the CMS System
+    Contact : Kalsariya Jay (https://jay-kalsariya.vercel.app)
+    Version: 1.0
+
+
+STEP 2 : Identify the Type of API
+
+    public 
+
+
+STEP 3: Identify The server base url
+
+    http://localhost:5000/api
+
+
+STEP 4 : Identify Resources 
+
+    Course
+    Student
+
+
+STEP 5 : Have the Resources plural
+
+    Courses(/courses)
+    Students(/students)
+
+
+STEP 6 : Define the Resource Models
+
+    Course Model 
+        Course Id
+        Course Name
+        Course Duration
+        Course Type
+    Student Model
+        Student Id
+        First Name
+        Last Name
+        Phone Number
+        Address
+
+
+STEP 7 : Select the Identifier for Each Resource
+
+     Course Model 
+        Course Id (IDENTIFIER)
+        Course Name
+        Course Duration
+        Course Type
+    Student Model
+        Student Id (IDENTIFIER)
+        First Name
+        Last Name
+        Phone Number
+        Address
+
+
+STEP 8 : Identify the Association for Each Resource
+
+    Courses 
+        /courses/{courseId}/students
+        /courses/{courseId}/course-subjects
+    Students
+
+
+STEP 9 : Check for URL Complexity
+
+    Courses
+        /courses
+        /courses/{courseId}
+        /courses/{courseId}/students
+    
+    Students
+        /students
+        /students/{studentId}
+        
+
+STEP 10 : Identify the Operations for Each Resource
+
+    Courses
+        /courses
+            GET
+            POST
+
+        /courses/{courseId}
+            GET
+            PUT
+            DELETE
+
+        /courses/{courseId}/students
+            GET
+            POST
+    
+    Students
+        /students
+            GET
+            POST
+
+        /students/{studentId}
+            GET
+            PUT
+            DELETE
+
+
+STEP 11 : Identify the Parameters Required for the Operation
+
+    Query Parameters
+
+        None
+
+    Path Parameters
+
+        None - collections
+        courseId - Unique course Id of the course model {applicable for individual item}
+
+    Headers
+
+        None
+
+    Cookies
+
+        None
+
+
+STEP 12 : Identify the Content Type of Request for the Operation
+
+    application/json
+
+
+STEP 13 : Identify the Request Body for the Operation
+
+Courses
+     GET /courses
+     Request : None
+      
+     POST /courses
+     Request Body Format:
+        {
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+      
+     GET /courses/{courseId}
+     Request : None
+
+     PUT /courses/{courseId}
+     Request Body Format:
+        {
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+
+     DELETE /courses/{courseId}
+     Request : None
+
+            
+     GET /courses/{courseId}/students
+     Request : None
+
+     POST /courses/{courseId}/students
+     Request Body Format:
+        {
+        "Student Id" : 12
+        }
+
+            
+Students
+     GET /students
+     Request : None
+
+     POST /students
+     Request Body Format:
+        {
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }  
+
+
+     GET /students/{studentId}
+     Request : None
+
+     PUT /students/{studentId}
+     Request Body Format:
+        {
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }
+
+     DELETE /students/{studentId}
+     Request : None    
+
+
+STEP 14 : Identify the HTTP Status Codes for the Operation
+
+    Courses
+        /courses
+            GET
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+            POST
+                HTTP 201 Created
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+        
+        /courses/{courseId}
+            GET
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+            PUT
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+                HTTP 404 Not Found
+                {
+                "code" : "NOT_FOUND",
+                "message" : "Requested resource not found"
+                }
+
+            DELETE
+                HTTP 204 No Content
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+        /courses/{courseId}/students
+
+            GET
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+            POST
+                HTTP 201 Created
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+                HTTP 404 Not Found
+                {
+                "code" : "NOT_FOUND",
+                "message" : "Requested resource not found"
+                }
+            
+    
+    Students
+        /students
+            GET
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+            POST
+                HTTP 201 Created
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+        /students/{studentId}
+            GET
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+            PUT
+                HTTP 200 OK
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+            DELETE
+                HTTP 204 No Content
+                HTTP 400 Bad Request
+                {
+                "code" : "INVALID_REQUEST",
+                "message" : "Request data is invalid"
+                }
+
+
+STEP 15 : Identify the Content Type of Response for the Operation
+
+    application/json
+
+
+STEP 16 : Identify the Response Body for the Operation
+
+Courses
+     GET /courses
+        HTTP 200 OK
+        (array)
+        {
+        "Course Id" : 1,
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+      
+     POST /courses
+        HTTP 201 Created
+        {
+        "Course Id" : 1,
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+      
+     GET /courses/{courseId}
+        HTTP 200 OK
+        {
+        "Course Id" : 1,
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+      
+
+     PUT /courses/{courseId}
+        HTTP 200 OK
+        {
+        "Course Id" : 1,
+        "Course Name" : "Backend Development",
+        "Course Duration" : "6 Months",
+        "Course Type" : "Full-Time"
+        }
+
+     DELETE /courses/{courseId}
+        HTTP 204 No Content
+     Response : None
+
+            
+     GET /courses/{courseId}/students
+        HTTP 200 OK
+        (array)
+      {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+      }
+
+     POST /courses/{courseId}/students
+        HTTP 201 Created
+         {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+         }
+
+Students
+     GET /students
+        HTTP 200 OK
+        (array)
+        {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }
+
+
+     POST /students
+        HTTP 201 Created
+        {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }  
+
+
+     GET /students/{studentId}
+        HTTP 200 OK
+        {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }  
+
+     PUT /students/{studentId}
+        HTTP 200 OK
+        {
+        "Student Id" : 12,
+        "First Name" : "Jay",
+        "Last Name" : "Kalsariya",
+        "Phone Number" : "9876543210",
+        "Address" : "Ahmedabad"
+        }  
+
+     DELETE /students/{studentId}
+        HTTP 204 No Content
+     Response : None
+
+STEP 18 : Identify the Need for Filtering and Add If Needed
+GET /courses
+Request :
+    courseType :
+        -Support for Filtering (e.g., /courses?courseType="engineering")
+
+STEP 19 : Identify the need for pagination and add if needed
+GET /courses
+Request :
+   page:
+    -support for pagination (e.g., /courses?page=2)
+   size : 
+    -support for pagination (e.g., /courses?size=10)
+    both :
+    -support for pagination (e.g., /courses?page=2&size=10)
+
+
+STEP 20 : Identify the Need for Sorting and Add If Needed
+    GET /courses
+    Request :
+        sort : sortBy = courseName
+        -support for sorting (e.g., /courses?sortBy=courseName)
+
+STEP 21 : Identify the API Versioning Scheme and Set the API Version
+
+    API Versioning Scheme
+        Url Versioning
+        Version 1.0
