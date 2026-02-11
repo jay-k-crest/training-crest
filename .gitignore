@@ -4,7 +4,7 @@
 __pycache__/
 *.py[cod]
 *.pyo
-
+*.Identifier
 # =========================
 # Virtual environments
 # =========================

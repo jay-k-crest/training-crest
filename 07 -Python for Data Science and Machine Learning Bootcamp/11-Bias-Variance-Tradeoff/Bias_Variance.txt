@@ -1,0 +1,68 @@
+1. The Goal
+
+When we train a machine learning model, we want it to make good predictions on new, unseen data (not just the data it was trained on).
+
+But models can make mistakes for two big reasons:
+
+Bias (being too simple and making systematic errors)
+
+Variance (being too complex and overreacting to noise)
+
+The tradeoff is about finding the right balance between these two.
+
+2. What is Bias?
+
+Think of bias as assumptions a model makes about the data.
+
+A high-bias model is too simple to capture the real patterns.
+
+Example: Trying to fit a straight line (linear regression) to data that actually curves (like a parabola).
+
+Consequence: The model always predicts poorly, even on training data → underfitting.
+
+3. What is Variance?
+
+Variance is about sensitivity to the training data.
+
+A high-variance model is very flexible and tries to memorize the training data.
+
+Example: A very wiggly curve that passes through every training point, even the noisy ones.
+
+Consequence: The model predicts training data very well, but fails on new data → overfitting.
+
+4. The Tradeoff
+
+If you make the model too simple → low variance, high bias → underfitting.
+
+If you make the model too complex → low bias, high variance → overfitting.
+
+The sweet spot is where both bias and variance are reasonably low, so the total error is minimized.
+
+5. Visual Intuition
+
+Imagine playing darts:
+
+High bias: All darts land far from the bullseye, but close together (systematic mistake).
+
+High variance: Darts are spread all over the board, sometimes close to the bullseye, sometimes far.
+
+Low bias + low variance: Darts cluster tightly around the bullseye → best performance.
+
+6. Error Decomposition
+
+The error of a model can be thought of as:
+Total Error = Bias² + Variance + Irreducible Error
+
+Bias²: Error from wrong assumptions.
+
+Variance: Error from being too sensitive to data.
+
+Irreducible error: Noise we can’t get rid of, no matter how good the model is.
+
+In practice:
+
+Start with a simple model, increase complexity gradually.
+
+Use techniques like cross-validation to find the sweet spot.
+
+Regularization methods (like Lasso, Ridge, dropout in neural nets) help control variance without adding too much bias.
