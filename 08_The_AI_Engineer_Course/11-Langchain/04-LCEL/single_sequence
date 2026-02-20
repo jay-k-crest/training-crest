@@ -1,0 +1,6 @@
+// RunnableSequence Graph
+digraph {
+	first [label=RunnableLambda]
+	last [label=RunnableLambda]
+	first -> last
+}

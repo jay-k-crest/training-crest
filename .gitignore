@@ -18,7 +18,8 @@ ENV/
 # =========================
 .env
 .env.*
-
+*.safetensors
+spacy_env/
 # =========================
 # Databases
 # =========================
@@ -49,3 +50,28 @@ alembic/versions/__pycache__/
 # =========================
 .DS_Store
 Thumbs.db
+
+# Model weights
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# HuggingFace / checkpoints
+checkpoint-*/
+fine_tuned_model/
+test_trainer/
+
+# Vector DB
+rag_chroma_db/
+
+# Environments
+spacy_env/
+venv/
+__pycache__/
+
+# Audio
+*.wav
+*.mp3
+
+allfiles.txt
