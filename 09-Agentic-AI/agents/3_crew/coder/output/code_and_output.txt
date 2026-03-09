@@ -1,0 +1,30 @@
+**Python code (calculate first 10,000 terms of the series and multiply by 4):**
+
+```python
+import math
+
+# number of terms
+n = 10000
+
+# compute the series sum
+s = 0.0
+for k in range(n):
+    term = ((-1) ** k) / (2 * k + 1)   # 1/(2k+1) with alternating signs
+    s += term
+
+# multiply by 4 (Leibniz formula for π)
+result = 4 * s
+
+# output
+print('Result for first', n, 'terms (multiplied by 4):')
+print(result)
+print('Difference from math.pi:', abs(result - math.pi))
+```
+
+**Output produced by the program:**
+
+```
+Result for first 10000 terms (multiplied by 4):
+3.1414926535900345
+Difference from math.pi: 9.99999997586265e-05
+```

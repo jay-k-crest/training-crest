@@ -1,0 +1,27 @@
+[project]
+name = "stock_picker"
+version = "0.1.0"
+description = "stock_picker using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "cohere>=5.20.7",
+    "crewai[tools]==1.9.3",
+    "litellm>=1.75.3",
+    "deepseek4free @ git+https://github.com/xtekky/deepseek4free.git"
+]
+
+[project.scripts]
+stock_picker = "stock_picker.main:run"
+run_crew = "stock_picker.main:run"
+train = "stock_picker.main:train"
+replay = "stock_picker.main:replay"
+test = "stock_picker.main:test"
+run_with_trigger = "stock_picker.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

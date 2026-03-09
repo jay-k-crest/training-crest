@@ -1,0 +1,50 @@
+propose:
+  description: >
+    You are proposing the motion: {motion}.
+    
+    Current conversation history:
+    {conversation_history}
+    
+    Relevant past debates:
+    {past_debates}
+    
+    Come up with a clear argument in favor of the motion.
+    Be very convincing. Use any previous debate arguments from memory to strengthen your case.
+  expected_output: >
+    Your clear argument in favor of the motion, in a concise but compelling manner.
+  agent: debater
+  output_file: output/propose.md
+
+oppose:
+  description: >
+    You are in opposition to the motion: {motion}.
+    
+    Current conversation history:
+    {conversation_history}
+    
+    Relevant past debates:
+    {past_debates}
+    
+    Come up with a clear argument against the motion.
+    Be very convincing. Use any previous debate arguments from memory to counter them effectively.
+  expected_output: >
+    Your clear argument against the motion, in a concise but compelling manner.
+  agent: debater
+  output_file: output/oppose.md
+
+decide:
+  description: >
+    Review the arguments presented by the debaters and decide which side is more convincing.
+    
+    Current conversation history:
+    {conversation_history}
+    
+    Relevant past debates:
+    {past_debates}
+    
+    Consider the strength of reasoning, evidence, and persuasiveness.
+    Reference specific points from both arguments in your decision.
+  expected_output: >
+    Your decision on which side is more convincing, with detailed reasoning referencing both arguments.
+  agent: judge
+  output_file: output/decide.md
